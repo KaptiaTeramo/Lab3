@@ -12,6 +12,7 @@ public class Deck {
 	private UUID DeckID;
 	private ArrayList<Card> DeckCards = new ArrayList<Card>();
 
+	
 	public Deck() {
 
 		super();
@@ -29,5 +30,13 @@ public class Deck {
 	public Card DrawCard() {
 
 		return DeckCards.remove(0);
+	}
+	
+	public Deck(int numJokers){
+		this();
+		for (int i=1; i <= numJokers; i++){
+			DeckCards.add(new Card(eSuit.JOKER, eRank.JOKER, 52+i));
+		}
+		Collections.shuffle(DeckCards);
 	}
 }

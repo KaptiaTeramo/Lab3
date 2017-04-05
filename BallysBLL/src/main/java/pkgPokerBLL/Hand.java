@@ -49,7 +49,7 @@ public class Hand {
 		for (Hand hand : ExplodedHands) {
 			hand = Hand.EvaluateHand(hand);
 		}
-
+		
 		//	Figure out best hand
 		Collections.sort(ExplodedHands, Hand.HandRank);
 		
@@ -66,6 +66,7 @@ public class Hand {
 	public static ArrayList<Hand> ExplodeHands(Hand h) {
 
 		ArrayList<Hand> ReturnHands = new ArrayList<Hand>();
+		for (Card c: Hand h)
 		return ReturnHands;
 	}
 
@@ -211,6 +212,14 @@ public class Hand {
 
 		return isHandStraightFlush;
 
+	}
+	
+	public static boolean isHand5OfAKind(Hand h, HandScore hs) {
+		boolean isHand5OfAKind = false;
+		if (h.getCardsInHand().get(eCardNo.FirstCard.getCardNo()).geteRank() == h.getCardsInHand()
+				.get(eCardNo.FifthCard.getCardNo()).geteRank()) {
+			isHand5OfAKind = true;}
+		return isHand5OfAKind;
 	}
 
 	// TODO: Implement This Method
@@ -522,4 +531,15 @@ public class Hand {
 			return 0;
 		}
 	};
+	
+	public static Hand PickBestHand(ArrayList<Hand> Hands) throws HandException{
+		for 
+	}
+	
 }
+
+
+
+
+
+

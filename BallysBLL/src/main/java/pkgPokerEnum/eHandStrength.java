@@ -2,6 +2,12 @@ package pkgPokerEnum;
 
 public enum eHandStrength {
 
+	FiveOfAKind(1000, "isHand5OfAKind"){
+		public String toString() {
+			return "Five Of a Kind";
+		}
+	},
+	
 	RoyalFlush(100, "isHandRoyalFlush") {
 		public String toString() {
 			return "Royal Flush";
