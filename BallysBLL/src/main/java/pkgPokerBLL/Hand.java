@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.UUID;
 
+import PkgException.HandException;
 import pkgPokerEnum.eCardNo;
 import pkgPokerEnum.eHandStrength;
 import pkgPokerEnum.eRank;
@@ -40,7 +41,7 @@ public class Hand {
 		CardsInHand.add(c);
 	}
 
-	public Hand EvaluateHand() {
+	public Hand EvaluateHand() throws HandException {
 
 		Hand h = null;
 
@@ -52,38 +53,50 @@ public class Hand {
 		
 		//	Figure out best hand
 		Collections.sort(ExplodedHands, Hand.HandRank);
-		
-		//	Return best hand.  
-		//	TODO: Fix...  what to do if there is a tie?
-		return ExplodedHands.get(0);
+
+		return PickBestHand(ExplodedHands);
 	}
 
-	
-	//TODO: one hand is passed in, 1, 52, 2704, etc are passed back
-	//		No jokers, 'ReturnHands' should have one hand
-	//		One Wild/joker 'ReturnHands' should have 52 hands, etc
-	
 	public static ArrayList<Hand> ExplodeHands(Hand h) {
 
 		ArrayList<Hand> ReturnHands = new ArrayList<Hand>();
 		ArrayList<Card> CardsInHand = h.getCardsInHand();
 		Hand MainHand = new Hand();
+		int numOfJokers = 5;
 		for(Card c1: CardsInHand){
 			if(c1.geteRank() != eRank.JOKER){
 				MainHand.AddCardToHand(c1);
+				numOfJokers -= 1;
 			}
 		}
 		for(Card c2: CardsInHand){
 			if(c2.geteRank() == eRank.JOKER){
 				for(eSuit suit: eSuit.values()){
 					for (eRank rank : eRank.values()) {
-						Hand tempHand = new Hand();
-						for (Card c3: MainHand.getCardsInHand()){
-							tempHand.AddCardToHand(c3);
+						if(numOfJokers == 1){
+							Hand tempHand = new Hand();
+							for (Card c3: MainHand.getCardsInHand()){
+								tempHand.AddCardToHand(c3);
+							}
+							
+							Card tempcard = new Card(suit, rank, 4);
+							tempHand.AddCardToHand(tempcard);
+							ReturnHands.add(tempHand);
+						}else{
+							Hand tempHand = new Hand();
+							for (Card c3: MainHand.getCardsInHand()){
+								tempHand.AddCardToHand(c3);
+							}
+							
+							Card tempcard = new Card(suit, rank, 5 - numOfJokers);
+							tempHand.AddCardToHand(tempcard);
+							
+							for(int i = 1; i <= numOfJokers; i++){
+								Card c4 = new Card(eRank.JOKER, eSuit.JOKER, 5 - numOfJokers + i);
+								tempHand.AddCardToHand(c4);
+							}
+							ReturnHands.addAll(ExplodeHands(tempHand));
 						}
-						Card tempcard = new Card(suit, rank, 4);
-						tempHand.AddCardToHand(tempcard);
-						ReturnHands.add(tempHand);
 					}
 				}
 			}
@@ -553,11 +566,21 @@ public class Hand {
 		}
 	};
 	
-//	public static Hand PickBestHand(ArrayList<Hand> Hands) throws HandException{
-//		for(){
-//		}
-//	}
-//	
+	
+	public static Hand PickBestHand(ArrayList<Hand> Hands) throws HandException{
+		Hand bestHand = Hands.get(0);
+		for(Hand h1 : Hands){
+			if (h1.getCardsInHand().size() < 5)
+
+				throw new HandException(h1.getCardsInHand().size());
+
+			if(h1.getHandScore().getHandStrength().getHandStrength() > bestHand.getHandScore().getHandStrength().getHandStrength()){
+				bestHand = h1;
+			}
+		}
+		return bestHand;
+	}
+
 }
 
 
