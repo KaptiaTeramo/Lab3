@@ -9,6 +9,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import PkgException.HandException;
 import pkgPokerEnum.eHandStrength;
 import pkgPokerEnum.eRank;
 import pkgPokerEnum.eSuit;
@@ -40,7 +41,7 @@ public class Hand_Test {
 
 	
 	@Test
-	public void Test5OfAKind() {
+	public void Test5OfAKind() throws HandException {
 		Hand h = new Hand();
 		
 		h.AddToCardsInHand(new Card(eSuit.CLUBS, eRank.TEN,1));
@@ -62,7 +63,7 @@ public class Hand_Test {
 	
 	
 	@Test
-	public void TestRoyalFlush() {
+	public void TestRoyalFlush() throws HandException {
 		Hand h = new Hand();
  
 		
@@ -85,7 +86,7 @@ public class Hand_Test {
 	}
 	
 	@Test
-	public void TestStraightFlush() {
+	public void TestStraightFlush() throws HandException {
 		Hand h = new Hand();
 		h.AddToCardsInHand(new Card(eSuit.CLUBS, eRank.TEN,1));
 		h.AddToCardsInHand(new Card(eSuit.CLUBS, eRank.JACK,1));
@@ -102,7 +103,7 @@ public class Hand_Test {
 	}
 	
 	@Test
-	public void TestFourOfAKind() {
+	public void TestFourOfAKind() throws HandException {
 		Hand h = new Hand();
 		h.AddToCardsInHand(new Card(eSuit.SPADES, eRank.TEN,1));
 		h.AddToCardsInHand(new Card(eSuit.HEARTS, eRank.TEN,1));
@@ -121,7 +122,7 @@ public class Hand_Test {
 	}
 	
 	@Test
-	public void TestFourOfAKind2() {
+	public void TestFourOfAKind2() throws HandException {
 		Hand h = new Hand();
 		h.AddToCardsInHand(new Card(eSuit.SPADES, eRank.ACE,1));
 		h.AddToCardsInHand(new Card(eSuit.HEARTS, eRank.ACE,1));
@@ -140,7 +141,7 @@ public class Hand_Test {
 	}
 	
 	@Test
-	public void TestFullHouse1() {
+	public void TestFullHouse1() throws HandException {
 		Hand h = new Hand();
 		h.AddToCardsInHand(new Card(eSuit.SPADES, eRank.TEN,1));
 		h.AddToCardsInHand(new Card(eSuit.HEARTS, eRank.TEN,1));
@@ -160,7 +161,7 @@ public class Hand_Test {
 	}
 	
 	@Test
-	public void TestFullHouse2() {
+	public void TestFullHouse2() throws HandException {
 		Hand h = new Hand();
 		h.AddToCardsInHand(new Card(eSuit.SPADES, eRank.TWO,1));
 		h.AddToCardsInHand(new Card(eSuit.HEARTS, eRank.TWO,1));
@@ -180,7 +181,7 @@ public class Hand_Test {
 	}
 	
 	@Test
-	public void TestFlush() {
+	public void TestFlush() throws HandException {
 		Hand h = new Hand();
 		h.AddToCardsInHand(new Card(eSuit.SPADES, eRank.ACE,1));
 		h.AddToCardsInHand(new Card(eSuit.SPADES, eRank.TWO,1));
@@ -199,7 +200,7 @@ public class Hand_Test {
 	}
 	
 	@Test
-	public void TestStraight1() {
+	public void TestStraight1() throws HandException {
 		Hand h = new Hand();
 		h.AddToCardsInHand(new Card(eSuit.SPADES, eRank.THREE,1));
 		h.AddToCardsInHand(new Card(eSuit.HEARTS, eRank.TWO,1));
@@ -219,7 +220,7 @@ public class Hand_Test {
 	}
 	
 	@Test
-	public void TestStraight2() {
+	public void TestStraight2() throws HandException {
 		Hand h = new Hand();
 		h.AddToCardsInHand(new Card(eSuit.SPADES, eRank.ACE,1));
 		h.AddToCardsInHand(new Card(eSuit.HEARTS, eRank.TWO,1));
@@ -239,7 +240,7 @@ public class Hand_Test {
 	}
 	
 	@Test
-	public void TestStraight3() {
+	public void TestStraight3() throws HandException {
 		Hand h = new Hand();
 		h.AddToCardsInHand(new Card(eSuit.SPADES, eRank.ACE,1));
 		h.AddToCardsInHand(new Card(eSuit.HEARTS, eRank.SIX,1));
@@ -260,7 +261,7 @@ public class Hand_Test {
 	}
 	
 	@Test
-	public void ThreeOfAKind1() {
+	public void ThreeOfAKind1() throws HandException {
 		Hand h = new Hand();
 		h.AddToCardsInHand(new Card(eSuit.SPADES, eRank.TWO,1));
 		h.AddToCardsInHand(new Card(eSuit.HEARTS, eRank.TWO,1));
@@ -279,7 +280,7 @@ public class Hand_Test {
 	}
 
 	@Test
-	public void ThreeOfAKind2() {
+	public void ThreeOfAKind2() throws HandException {
 		Hand h = new Hand();
 		h.AddToCardsInHand(new Card(eSuit.CLUBS, eRank.TWO,1));
 		h.AddToCardsInHand(new Card(eSuit.HEARTS, eRank.KING,1));
@@ -298,7 +299,7 @@ public class Hand_Test {
 	}	
 	
 	@Test
-	public void ThreeOfAKind3() {
+	public void ThreeOfAKind3() throws HandException {
 		Hand h = new Hand();
 		h.AddToCardsInHand(new Card(eSuit.CLUBS, eRank.THREE,1));
 		h.AddToCardsInHand(new Card(eSuit.SPADES, eRank.FOUR,1));
@@ -317,7 +318,7 @@ public class Hand_Test {
 	}	
 	
 	@Test
-	public void TwoPair1() {
+	public void TwoPair1() throws HandException {
 		Hand h = new Hand();
 		h.AddToCardsInHand(new Card(eSuit.CLUBS, eRank.TEN,1));
 		h.AddToCardsInHand(new Card(eSuit.SPADES, eRank.THREE,1));
@@ -337,7 +338,7 @@ public class Hand_Test {
 	}
 	
 	@Test
-	public void TwoPair2() {
+	public void TwoPair2() throws HandException {
 		Hand h = new Hand();
 		h.AddToCardsInHand(new Card(eSuit.CLUBS, eRank.TEN,1));
 		h.AddToCardsInHand(new Card(eSuit.SPADES, eRank.THREE,1));
@@ -357,7 +358,7 @@ public class Hand_Test {
 	}
 	
 	@Test
-	public void TwoPair3() {
+	public void TwoPair3() throws HandException {
 		Hand h = new Hand();
 		h.AddToCardsInHand(new Card(eSuit.CLUBS, eRank.TEN,1));
 		h.AddToCardsInHand(new Card(eSuit.SPADES, eRank.THREE,1));
@@ -377,7 +378,7 @@ public class Hand_Test {
 	}
 	
 	@Test
-	public void Pair1() {
+	public void Pair1() throws HandException {
 		Hand h = new Hand();
 		h.AddToCardsInHand(new Card(eSuit.CLUBS, eRank.TWO,1));
 		h.AddToCardsInHand(new Card(eSuit.SPADES, eRank.THREE,1));
@@ -397,7 +398,7 @@ public class Hand_Test {
 	}
 		
 	@Test
-	public void Pair2() {
+	public void Pair2() throws HandException {
 		Hand h = new Hand();
 		h.AddToCardsInHand(new Card(eSuit.CLUBS, eRank.ACE,1));
 		h.AddToCardsInHand(new Card(eSuit.SPADES, eRank.THREE,1));
@@ -417,7 +418,7 @@ public class Hand_Test {
 	}
 	
 	@Test
-	public void Pair3() {
+	public void Pair3() throws HandException {
 		Hand h = new Hand();
 		h.AddToCardsInHand(new Card(eSuit.CLUBS, eRank.ACE,1));
 		h.AddToCardsInHand(new Card(eSuit.SPADES, eRank.THREE,1));
@@ -437,7 +438,7 @@ public class Hand_Test {
 	}
 	
 	@Test
-	public void Pair4() {
+	public void Pair4() throws HandException {
 		Hand h = new Hand();
 		h.AddToCardsInHand(new Card(eSuit.CLUBS, eRank.TWO,1));
 		h.AddToCardsInHand(new Card(eSuit.SPADES, eRank.TWO,1));
@@ -457,7 +458,7 @@ public class Hand_Test {
 	}
 	
 	@Test
-	public void HighCard() {
+	public void HighCard() throws HandException {
 		Hand h = new Hand();
 		h.AddToCardsInHand(new Card(eSuit.CLUBS, eRank.TWO,1));
 		h.AddToCardsInHand(new Card(eSuit.SPADES, eRank.THREE,1));
