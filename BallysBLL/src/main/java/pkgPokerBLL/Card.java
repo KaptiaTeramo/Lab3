@@ -57,8 +57,16 @@ public class Card implements Comparable {
 		this.eSuit = eSuit;
 	}
 	
-	
 
+	public boolean getisWild() {
+		return isWild;
+	}
+
+	public void setisWild(boolean isWild) {
+		this.isWild = isWild;
+	}
+
+	
 	public int compareTo(Object o) {
 		Card c = (Card) o;
 		return c.geteRank().compareTo(this.geteRank());
@@ -77,5 +85,4 @@ public class Card implements Comparable {
 
 		}
 	};
-
 }

@@ -66,7 +66,29 @@ public class Hand {
 	public static ArrayList<Hand> ExplodeHands(Hand h) {
 
 		ArrayList<Hand> ReturnHands = new ArrayList<Hand>();
-		for (Card c: Hand h)
+		ArrayList<Card> CardsInHand = h.getCardsInHand();
+		Hand MainHand = new Hand();
+		for(Card c1: CardsInHand){
+			if(c1.geteRank() != eRank.JOKER){
+				MainHand.AddCardToHand(c1);
+			}
+		}
+		for(Card c2: CardsInHand){
+			if(c2.geteRank() == eRank.JOKER){
+				for(eSuit suit: eSuit.values()){
+					for (eRank rank : eRank.values()) {
+						Hand tempHand = new Hand();
+						for (Card c3: MainHand.getCardsInHand()){
+							tempHand.AddCardToHand(c3);
+						}
+						Card tempcard = new Card(suit, rank, 4);
+						tempHand.AddCardToHand(tempcard);
+						ReturnHands.add(tempHand);
+					}
+				}
+			}
+		}
+		
 		return ReturnHands;
 	}
 
@@ -214,7 +236,7 @@ public class Hand {
 
 	}
 	
-	public static boolean isHand5OfAKind(Hand h, HandScore hs) {
+	public static boolean isHandFiveOfAKind(Hand h, HandScore hs) {
 		boolean isHand5OfAKind = false;
 		if (h.getCardsInHand().get(eCardNo.FirstCard.getCardNo()).geteRank() == h.getCardsInHand()
 				.get(eCardNo.FifthCard.getCardNo()).geteRank()) {
@@ -222,7 +244,6 @@ public class Hand {
 		return isHand5OfAKind;
 	}
 
-	// TODO: Implement This Method
 	public static boolean isHandFourOfAKind(Hand h, HandScore hs) {
 
 		boolean isHandFourOfAKind = false;
@@ -532,10 +553,11 @@ public class Hand {
 		}
 	};
 	
-	public static Hand PickBestHand(ArrayList<Hand> Hands) throws HandException{
-		for 
-	}
-	
+//	public static Hand PickBestHand(ArrayList<Hand> Hands) throws HandException{
+//		for(){
+//		}
+//	}
+//	
 }
 
 
